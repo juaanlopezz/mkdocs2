@@ -1,1 +1,3 @@
 site_name: My Docs
+nav:
+  - Practica 3-1: practica3-1.md 
