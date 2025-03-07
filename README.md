@@ -110,4 +110,4 @@ https://juaanlopezz.github.io/mkdocs2/practica3-1/
 
 
 ## asi tendria que quedar la estructura del repositorio
-![](./imagenes/estructura.PNG)
+![](./imagenes/estructura.png)
