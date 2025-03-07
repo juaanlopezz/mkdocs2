@@ -8,7 +8,7 @@
 
 ## Tener la siguiente estructura de directorios y archivos dentro de la instancia del nodo control, ya que todo lo que vamos a hacer va a ser desde el nodo control:
 
-![](imagenes/estructura.png)
+![](../imagenes/estructura.png)
 
 ## La arquitectura de esta aplicación estará formada por dos capas:
 
@@ -32,7 +32,7 @@ ansible_ssh_common_args='-o StrictHostKeyChecking=accept-new'
 
 
 ## 1. paso: Creamos el nombre de dominio desde no-ip, poniendo la ip del frontend
-![](imagenes/no-ip.png)
+![](../imagenes/no-ip.png)
 
 ## 2. paso: Dentro de la instancia nodo control, tener metida la vockey.pem y darle permisos chmod 400 y descargar ansible
 ```yaml
@@ -377,12 +377,12 @@ sudo ansible-playbook -i ./inventory/inventory main.yml
 ```
 
 ## comprobación ejecucion del main.yml donde se encuentran todos los archivos
-![](imagenes/ejecuion.png)
+![](../imagenes/ejecuion.png)
 
 ## 9. paso: comprobación del funcionamiento correcto de moodle
 
-![](imagenes/moodle.PNG)
+![](../imagenes/moodle.PNG)
 
 
 ## 10. paso: comprobar certificado
-![](imagenes/certificado.png)
+![](../imagenes/certificado.png)
