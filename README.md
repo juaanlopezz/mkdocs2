@@ -92,13 +92,22 @@ jobs:
 ### Buscamos la sección Workflow permissions y seleccionamos la opción Read and write permissions.
 ![](./imagenes/permisos.PNG)
 
+## MUY IMPORTANTE TENER 2 RAMAS EN EL GITHUB, la del main( que viene por defecto) y la del gh-pages (hay que crearla)
+![](./imagenes/ramas.PNG)
+
+
 ## asi sería el resultado final, he creado un archivo dentro de docs, llamado practica3-1.md donde se refleja todo el readme del markdown de las prácticas anteriores, eso se refleja en el navegador como se ve en las siguientes iamgenes, accediendo a : 
 ```
 https://juaanlopezz.github.io/mkdocs2/practica3-1/
 ```
+## pagina readme .md del repo 3.1:
 
 ![](./imagenes/mkdocs.PNG)
 ![](./imagenes/mkdocs1.PNG)
+
+## pagina principal:
+![](./imagenes/princip.PNG)
+
 
 ## asi tendria que quedar la estructura del repositorio
 ![](./imagenes/estructura.PNG)
