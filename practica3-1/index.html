@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="light">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        
+        <link rel="shortcut icon" href="../img/favicon.ico">
+        <title>Practica 3-1 - My Docs</title>
+        <link href="../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../css/fontawesome.min.css" rel="stylesheet">
+        <link href="../css/brands.min.css" rel="stylesheet">
+        <link href="../css/solid.min.css" rel="stylesheet">
+        <link href="../css/v4-font-face.min.css" rel="stylesheet">
+        <link href="../css/base.css" rel="stylesheet">
+        <link id="hljs-light" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" >
+        <link id="hljs-dark" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github-dark.min.css" disabled>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script>hljs.highlightAll();</script> 
+    </head>
+
+    <body>
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand" href="..">My Docs</a>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+
+                    <ul class="nav navbar-nav ms-md-auto">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-bs-toggle="modal" data-bs-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-bs-toggle="collapse" data-bs-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-body-tertiary">
+        <ul class="nav flex-column">
+            
+            <li class="nav-item" data-bs-level="1"><a href="#practica-iaw-31-implantacion-de-moodle-en-amazon-web-services-aws-mediante-ansible" class="nav-link">Practica-IAW-3.1- Implantación de Moodle en Amazon Web Services (AWS) mediante Ansible</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="2"><a href="#en-esta-practica-vamos-a-realizar-la-implantacion-de-la-aplicacion-web-moodle-en-dos-instancias-ec2-de-amazon-web-services-aws-haciendo-uso-de-playbooks-de-ansible-en-una-de-las-instancias-debera-instalar-apache-http-server-y-los-modulos-necesarios-de-php-y-en-la-otra-maquina-debera-instalar-mysql-server" class="nav-link">En esta práctica vamos a realizar la implantación de la aplicación web Moodle en dos instancias EC2 de Amazon Web Services (AWS) haciendo uso de playbooks de Ansible. En una de las instancias deberá instalar Apache HTTP Server y los módulos necesarios de PHP y en la otra máquina deberá instalar MySQL Server.</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#implantacion-de-moodle-en-amazon-web-services-aws-mediante-ansible" class="nav-link">Implantación de Moodle en Amazon Web Services (AWS) mediante Ansible</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#pasos-a-seguir-antes-de-todo" class="nav-link">Pasos a seguir antes de todo:</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#tener-la-siguiente-estructura-de-directorios-y-archivos-dentro-de-la-instancia-del-nodo-control-ya-que-todo-lo-que-vamos-a-hacer-va-a-ser-desde-el-nodo-control" class="nav-link">Tener la siguiente estructura de directorios y archivos dentro de la instancia del nodo control, ya que todo lo que vamos a hacer va a ser desde el nodo control:</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#la-arquitectura-de-esta-aplicacion-estara-formada-por-dos-capas" class="nav-link">La arquitectura de esta aplicación estará formada por dos capas:</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#_1" class="nav-link"></a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#ahora-vamos-al-archivo-de-inventory-donde-en-inventory-tenemos-que-poner-las-ip-publica-del-frontend-y-el-backend-y-el-grupo" class="nav-link">Ahora vamos al archivo de inventory, donde en inventory tenemos que poner las ip pública del frontend y el backend y el grupo.</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#1-paso-creamos-el-nombre-de-dominio-desde-no-ip-poniendo-la-ip-del-frontend" class="nav-link">1. paso: Creamos el nombre de dominio desde no-ip, poniendo la ip del frontend</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#2-paso-dentro-de-la-instancia-nodo-control-tener-metida-la-vockeypem-y-darle-permisos-chmod-400-y-descargar-ansible" class="nav-link">2. paso: Dentro de la instancia nodo control, tener metida la vockey.pem y darle permisos chmod 400 y descargar ansible</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#3-paso-vamos-a-utilizar-las-siguientes-variables" class="nav-link">3. paso: vamos a utilizar las siguientes variables:</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#4-paso-crear-el-archivo-install_lamp_frontendyml" class="nav-link">4. paso: crear el archivo install_lamp_frontend.yml</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#5-paso-crear-el-archivo-install_lamp_backendyml" class="nav-link">5. paso: crear el archivo install_lamp_backend.yml</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#6-paso-crear-el-archivo-setup_letsencrypt_httpsyml" class="nav-link">6. paso: crear el archivo setup_letsencrypt_https.yml</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#7-paso-crear-el-archivo-deployyml" class="nav-link">7. paso: crear el archivo deploy.yml</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#8-paso-segun-el-orden-hayamos-creado-los-archivos-se-ejecutan-primero-se-ejecuta-el-frontend-backend-letsencrypt-y-por-ultimo-deploy" class="nav-link">8. paso: según el orden hayamos creado los archivos, se ejecutan, primero se ejecuta el frontend, backend, letsencrypt y por ultimo deploy</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#comprobacion-ejecucion-del-mainyml-donde-se-encuentran-todos-los-archivos" class="nav-link">comprobación ejecucion del main.yml donde se encuentran todos los archivos</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#9-paso-comprobacion-del-funcionamiento-correcto-de-moodle" class="nav-link">9. paso: comprobación del funcionamiento correcto de moodle</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#10-paso-comprobar-certificado" class="nav-link">10. paso: comprobar certificado</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<h1 id="practica-iaw-31-implantacion-de-moodle-en-amazon-web-services-aws-mediante-ansible">Practica-IAW-3.1- Implantación de Moodle en Amazon Web Services (AWS) mediante Ansible</h1>
+<h2 id="en-esta-practica-vamos-a-realizar-la-implantacion-de-la-aplicacion-web-moodle-en-dos-instancias-ec2-de-amazon-web-services-aws-haciendo-uso-de-playbooks-de-ansible-en-una-de-las-instancias-debera-instalar-apache-http-server-y-los-modulos-necesarios-de-php-y-en-la-otra-maquina-debera-instalar-mysql-server">En esta práctica vamos a realizar la implantación de la aplicación web Moodle en dos instancias EC2 de Amazon Web Services (AWS) haciendo uso de playbooks de Ansible. En una de las instancias deberá instalar Apache HTTP Server y los módulos necesarios de PHP y en la otra máquina deberá instalar MySQL Server.</h2>
+<h2 id="implantacion-de-moodle-en-amazon-web-services-aws-mediante-ansible">Implantación de Moodle en Amazon Web Services (AWS) mediante Ansible</h2>
+<h2 id="pasos-a-seguir-antes-de-todo">Pasos a seguir antes de todo:</h2>
+<h2 id="tener-la-siguiente-estructura-de-directorios-y-archivos-dentro-de-la-instancia-del-nodo-control-ya-que-todo-lo-que-vamos-a-hacer-va-a-ser-desde-el-nodo-control">Tener la siguiente estructura de directorios y archivos dentro de la instancia del nodo control, ya que todo lo que vamos a hacer va a ser desde el nodo control:</h2>
+<p><img alt="" src="imagenes/estructura.png" /></p>
+<h2 id="la-arquitectura-de-esta-aplicacion-estara-formada-por-dos-capas">La arquitectura de esta aplicación estará formada por dos capas:</h2>
+<h3 id="una-capa-de-front-end-formada-por-un-servidor-web-con-apache-http-server">Una capa de front-end, formada por un servidor web con Apache HTTP Server.</h3>
+<h3 id="una-capa-de-back-end-formada-por-un-servidor-mysql">Una capa de back-end, formada por un servidor MySQL.</h3>
+<h2 id="_1"></h2>
+<h2 id="ahora-vamos-al-archivo-de-inventory-donde-en-inventory-tenemos-que-poner-las-ip-publica-del-frontend-y-el-backend-y-el-grupo">Ahora vamos al archivo de inventory, donde en inventory tenemos que poner las ip pública del frontend y el backend y el grupo.</h2>
+<pre><code class="language-yaml">[frontend]
+44.199.2.175
+
+[backend]
+34.233.73.87
+
+[all:vars]
+ansible_user=ubuntu
+ansible_ssh_private_key_file=/home/ubuntu/practica-iaw-3.1/vockey.pem
+ansible_ssh_common_args='-o StrictHostKeyChecking=accept-new'
+</code></pre>
+<h2 id="1-paso-creamos-el-nombre-de-dominio-desde-no-ip-poniendo-la-ip-del-frontend">1. paso: Creamos el nombre de dominio desde no-ip, poniendo la ip del frontend</h2>
+<p><img alt="" src="imagenes/no-ip.png" /></p>
+<h2 id="2-paso-dentro-de-la-instancia-nodo-control-tener-metida-la-vockeypem-y-darle-permisos-chmod-400-y-descargar-ansible">2. paso: Dentro de la instancia nodo control, tener metida la vockey.pem y darle permisos chmod 400 y descargar ansible</h2>
+<pre><code class="language-yaml">apt install ansible -y
+</code></pre>
+<h2 id="3-paso-vamos-a-utilizar-las-siguientes-variables">3. paso: vamos a utilizar las siguientes variables:</h2>
+<pre><code class="language-yaml">frontend_private_ip: 172.31.41.12
+
+db:
+    name: moodle_db
+    user: juanje
+    password: Eliker123
+
+moodle:
+    directory: /var/www/html/moodle
+    db_name: moodle_db
+    db_user: usuario_moodle
+    db_password: Eliker123
+    type: mysqli
+    db_host: 172.31.34.212
+    ip_cliente_mysql: 172.31.%
+    domain: practica-iaw.zapto.org
+    data_directory: /var/www/moodledata
+
+
+certbot:
+    le_email: juan@email.es
+    le_domain: practica-iaw.zapto.org
+
+</code></pre>
+<h2 id="4-paso-crear-el-archivo-install_lamp_frontendyml">4. paso: crear el archivo install_lamp_frontend.yml</h2>
+<pre><code class="language-yaml">---
+- name: Configurar Moodle Frontend
+  hosts: frontend
+  become: yes
+
+  tasks:
+
+    - name: Actualizar los repositorios
+      apt:
+        update_cache: yes
+
+    - name: Instalar el servidor web Apache
+      apt:
+        name: apache2
+        state: present
+
+    - name: Instalar PHP y los módulos necesarios
+      apt: 
+        name:
+          - php
+          - php-mysql
+          - libapache2-mod-php
+          - php-bcmath
+          - php-curl
+          - php-gd
+          - php-imagick
+          - php-intl
+          - php-memcached
+          - php-mbstring
+          - php-dom
+          - php-zip
+          - php-cli
+          - php-xml
+          - php-soap
+        state: present
+
+    - name: Modificamos el valor max_input_vars de PHP
+      replace: 
+        path: /etc/php/8.3/apache2/php.ini
+        regexp: ;max_input_vars = 1000
+        replace: max_input_vars = 5000
+
+    - name: Modificamos el valor de memory_limit de PHP
+      replace: 
+        path: /etc/php/8.3/apache2/php.ini
+        regexp: memory_limit = 128M
+        replace: memory_limit = 256M
+
+    - name: Modificamos el valor de post_max_size de PHP
+      replace: 
+        path: /etc/php/8.3/apache2/php.ini
+        regexp: post_max_size = 8M
+        replace: post_max_size = 128M
+
+    - name: Modificamos el valor de upload_max_filesize de PHP
+      replace:
+        path: /etc/php/8.3/apache2/php.ini
+        regexp: upload_max_filesize = 2M
+        replace: upload_max_filesize = 128M
+
+    - name: Copiar el archivo de configuración de Apache
+      copy:
+        src: ../templates/000-default.conf
+        dest: /etc/apache2/sites-available/
+        mode: 0755
+
+    - name: Crear directorio /var/www/html/moodle
+      file:
+        path: /var/www/html/moodle
+        state: directory
+        owner: www-data
+        group: www-data
+        mode: '0755'
+
+    - name: Crear directorio /var/www/moodledata
+      file:
+        path: /var/www/moodledata
+        state: directory
+        owner: www-data
+        group: www-data
+        mode: '0755'
+
+    - name: Habilitar el módulo rewrite de Apache
+      command: a2enmod rewrite
+      changed_when: false
+
+
+    - name: Reiniciar el servidor web Apache
+      service:
+        name: apache2
+        state: restarted
+</code></pre>
+<h2 id="5-paso-crear-el-archivo-install_lamp_backendyml">5. paso: crear el archivo install_lamp_backend.yml</h2>
+<pre><code class="language-yaml">---
+- name: Playbook para instalar la pila LAMP en el Backend
+  hosts: backend
+  become: yes
+
+  vars_files:
+    - ../vars/variables.yml
+
+  tasks:
+
+    - name: Actualizar los repositorios
+      apt:
+        update_cache: yes
+
+    - name: Instalar el sistema gestor de bases de datos MySQL
+      apt:
+        name: mysql-server
+        state: present
+
+    - name: Instalamos el módulo de pymysql
+      apt:
+        name: python3-pymysql
+        state: present
+
+    - name: Crear la base de datos para moodle
+      mysql_db:
+        name: &quot;{{ moodle.db_name }}&quot;
+        encoding: utf8mb4
+        collation: utf8mb4_unicode_ci
+        state: present
+        login_unix_socket: /var/run/mysqld/mysqld.sock
+
+    - name: Borra el usuario si existe
+      mysql_user:
+        name: &quot;{{ moodle.db_user }}&quot;
+        host: &quot;{{ moodle.ip_cliente_mysql }}&quot;
+        state: absent
+        login_unix_socket: /var/run/mysqld/mysqld.sock
+
+    - name: Crear el usuario para la base de datos de moodle
+      mysql_user:
+        name: &quot;{{ moodle.db_user }}&quot;
+        host: &quot;{{ moodle.ip_cliente_mysql }}&quot;
+        password: &quot;{{ moodle.db_password }}&quot;
+        priv: &quot;{{ moodle.db_name }}.*:ALL&quot;
+        state: present
+        login_unix_socket: /var/run/mysqld/mysqld.sock
+
+    - name: Reiniciamos privilegios del usuario
+      mysql_db:
+        name: &quot;{{ moodle.db_name }}&quot;
+        state: present
+        login_unix_socket: /var/run/mysqld/mysqld.sock
+
+    - name: Reiniciamos el servicio de base de datos
+      service:
+        name: mysql
+        state: restarted
+</code></pre>
+<h2 id="6-paso-crear-el-archivo-setup_letsencrypt_httpsyml">6. paso: crear el archivo setup_letsencrypt_https.yml</h2>
+<pre><code class="language-yaml">---
+- name: Configurar Certbot y solicitar certificado SSL
+  hosts: frontend
+  become: yes
+  vars_files:
+    - ../vars/variables.yml 
+
+  tasks:
+    # Instalar snapd si no está presente
+    - name: Instalar snapd si no está presente
+      apt:
+        name: snapd
+        state: present
+
+    # Instalar el paquete base de snap si no está
+    - name: Instalar core de snap si no está presente
+      snap:
+        name: core
+        state: present
+
+    # Eliminar instalaciones anteriores de certbot con apt
+    - name: Eliminar Certbot instalado con apt (si existe)
+      apt:
+        name: certbot
+        state: absent
+
+    # Instalar Certbot con snap
+    - name: Instalar Certbot usando snap
+      snap:
+        name: certbot
+        state: present
+
+    # Verificar las variables certbot
+    - name: Verificar las variables certbot
+      debug:
+        msg: &quot;Email: {{ certbot.le_email }}, Domain: {{ certbot.le_domain }}&quot;
+
+    # Solicitar un certificado SSL para el dominio con Certbot
+    - name: Solicitar certificado SSL para el dominio con Certbot
+      command: &gt;
+        certbot --apache
+        -m &quot;{{ certbot.le_email }}&quot;
+        --agree-tos
+        --no-eff-email
+        -d &quot;{{ certbot.le_domain }}&quot;
+        --non-interactive
+</code></pre>
+<h2 id="7-paso-crear-el-archivo-deployyml">7. paso: crear el archivo deploy.yml</h2>
+<pre><code class="language-yaml">- name: Deploy Moodle
+  hosts: frontend
+  become: yes
+
+  vars_files:
+    - ../vars/variables.yml
+
+    - name: Descargar el código fuente de moodle
+      get_url:
+        url: https://github.com/moodle/moodle/archive/refs/tags/v4.3.1.zip 
+        dest: /tmp
+        mode: 0755
+
+    - name: Instalar unzip
+      apt: 
+        name: unzip
+        state: present
+
+    - name: Descomprimir el paquete de moodle
+      unarchive:
+        src: /tmp/moodle-4.3.1.zip  
+        dest: /tmp
+        remote_src: yes
+
+    - name: Eliminar el directorio de instalación
+      file:
+        path: /var/www/html/
+        state: absent
+
+    - name: Crear el directorio de instalación
+      file:
+        path: /var/www/html
+        state: directory
+        owner: www-data
+        group: www-data
+        mode: 0755
+
+    - name: Copiar contenido de moodle-4.3.1 a /var/www/html
+      copy:
+        src: /tmp/moodle-4.3.1/
+        dest: /var/www/html
+        remote_src: true
+        force: yes
+
+    - name: Modificar los permisos del directorio /var/www/html
+      file:
+        path: /var/www/html
+        owner: www-data
+        group: www-data
+        recurse: yes
+        mode: 0755
+
+    - name: Modificar los permisos del directorio /var/moodledata
+      file:
+        path: /var/moodledata
+        owner: www-data
+        group: www-data
+        recurse: yes
+        mode: 0755
+
+    - name: Instalar moodle desde PHP CLI
+      command:
+        sudo -u www-data php /var/www/html/admin/cli/install.php \
+        --wwwroot={{ moodle.www_root }} \
+        --dataroot={{ moodle.data_root }} \
+        --dbtype={{ moodle.type }} \
+        --dbhost={{ moodle.host }} \
+        --dbname={{ db.name }} \
+        --dbuser={{ db.user }} \
+        --dbpass={{ db.password }} \
+        --fullname=&quot;{{ moodle.fullname }}&quot; \
+        --shortname=&quot;{{ moodle.shortname }}&quot; \
+        --summary=&quot;{{ moodle.summary }}&quot; \
+        --adminuser={{ moodle.admin_user }} \
+        --adminpass={{ moodle.admin_pass }} \
+        --adminemail={{ moodle.admin_email }} \
+        --non-interactive \
+        --agree-license
+      args:
+        chdir: /var/www/html
+
+    - name: Configurar cron para Moodle
+      become: yes
+      ansible.builtin.cron:
+        name: &quot;Moodle Cron Job&quot;
+        minute: &quot;*&quot;
+        job: &quot;/usr/bin/php /var/www/html/admin/cli/cron.php &gt;/dev/null 2&gt;&amp;1&quot;
+        state: present
+
+
+    - name: Reiniciar servicio cron 
+      become: yes
+      ansible.builtin.service:
+        name: cron
+        state: restarted
+        enabled: yes
+
+</code></pre>
+<h2 id="8-paso-segun-el-orden-hayamos-creado-los-archivos-se-ejecutan-primero-se-ejecuta-el-frontend-backend-letsencrypt-y-por-ultimo-deploy">8. paso: según el orden hayamos creado los archivos, se ejecutan, primero se ejecuta el frontend, backend, letsencrypt y por ultimo deploy</h2>
+<pre><code class="language-yaml">sudo ansible-playbook -i ./inventory/inventory main.yml
+</code></pre>
+<h2 id="comprobacion-ejecucion-del-mainyml-donde-se-encuentran-todos-los-archivos">comprobación ejecucion del main.yml donde se encuentran todos los archivos</h2>
+<p><img alt="" src="imagenes/ejecuion.png" /></p>
+<h2 id="9-paso-comprobacion-del-funcionamiento-correcto-de-moodle">9. paso: comprobación del funcionamiento correcto de moodle</h2>
+<p><img alt="" src="imagenes/moodle.PNG" /></p>
+<h2 id="10-paso-comprobar-certificado">10. paso: comprobar certificado</h2>
+<p><img alt="" src="imagenes/certificado.png" /></p></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script src="../js/bootstrap.bundle.min.js"></script>
+        <script>
+            var base_url = "..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../js/base.js"></script>
+        <script src="../search/main.js"></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>From here you can search these documents. Enter your search terms below.</p>
+                <form>
+                    <div class="form-group">
+                        <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results" data-no-results-text="No results found"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>
