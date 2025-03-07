@@ -1,4 +1,4 @@
-# Practica-IAW-3.1- Implantación de Moodle en Amazon Web Services (AWS) mediante Ansible
+# Practica-IAW-3.2- Implantación de Moodle en Amazon Web Services (AWS) mediante Ansible
 
 ## En esta práctica vamos a realizar la implantación de la aplicación web Moodle en dos instancias EC2 de Amazon Web Services (AWS) haciendo uso de playbooks de Ansible. En una de las instancias deberá instalar Apache HTTP Server y los módulos necesarios de PHP y en la otra máquina deberá instalar MySQL Server.
 

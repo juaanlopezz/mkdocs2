@@ -119,8 +119,8 @@ theme:
   name: material
   palette:
     primary: green
-![](./imagenes/3.2.PNG)
 ```
+![](./imagenes/3.2.PNG)
 
 ## pagina principal (despues de haber añadido la 3.2):
 ![](./imagenes/princip.PNG)
@@ -130,4 +130,4 @@ theme:
 ![](./imagenes/index.PNG)
 
 ## asi tendria que quedar la estructura final del repositorio
-![](./imagenes/estructura.PNG)
+![](./imagenes/estructura.png)
