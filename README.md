@@ -127,7 +127,7 @@ theme:
 
 ## pagina index.md personalizada:
 
+![](./imagenes/index.PNG)
 
-
-## asi tendria que quedar la estructura del repositorio
-![](./imagenes/estructura.png)
+## asi tendria que quedar la estructura final del repositorio
+![](./imagenes/estructura.PNG)
