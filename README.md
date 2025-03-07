@@ -106,11 +106,27 @@ https://juaanlopezz.github.io/mkdocs2/practica3-1/
 ![](./imagenes/mkdocs.PNG)
 ![](./imagenes/mkdocs1.PNG)
 
-## pagina readme .md del repo 3.2(lo agregué despues, ojo que hay que añadirlo al mkdocs.yml el archivo):
+## pagina readme .md del repo 3.2(lo agregué despues, ojo que hay que añadirlo al mkdocs.yml el archivo, el archivo practica3-2.d se crea dentro de docs, todos los readme que querramos poner habrá que añadirlos en esa ruta):
 
+## el archivo final quedaría asi:
+```
+site_name: jlopgim
+nav:
+  - Practica_3-1: practica3-1.md 
+  - Practica_3-2: practica3-2.md 
 
-## pagina principal:
+theme:
+  name: material
+  palette:
+    primary: green
+![](./imagenes/3.2.PNG)
+```
+
+## pagina principal (despues de haber añadido la 3.2):
 ![](./imagenes/princip.PNG)
+
+## pagina index.md personalizada:
+
 
 
 ## asi tendria que quedar la estructura del repositorio
