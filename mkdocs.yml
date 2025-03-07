@@ -1,3 +1,8 @@
 site_name: jlopgim
 nav:
   - Practica_3-1: practica3-1.md 
+
+theme:
+  name: material
+  palette:
+    primary: green
