@@ -9,6 +9,8 @@
       
       
       
+        <link rel="prev" href="../practica3-1/">
+      
       
       
       <link rel="icon" href="../assets/images/favicon.png">
@@ -16,7 +18,7 @@
     
     
       
-        <title>Practica-IAW-3.1- Implantación de Moodle en Amazon Web Services (AWS) mediante Ansible - jlopgim</title>
+        <title>Practica_3-2 - jlopgim</title>
       
     
     
@@ -102,7 +104,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Practica-IAW-3.1- Implantación de Moodle en Amazon Web Services (AWS) mediante Ansible
+              Practica_3-2
             
           </span>
         </div>
@@ -205,6 +207,338 @@
   
 
       </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Practica_3-2
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Practica_3-2
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#en-esta-practica-vamos-a-realizar-la-implantacion-de-la-aplicacion-web-moodle-en-dos-instancias-ec2-de-amazon-web-services-aws-haciendo-uso-de-playbooks-de-ansible-en-una-de-las-instancias-debera-instalar-apache-http-server-y-los-modulos-necesarios-de-php-y-en-la-otra-maquina-debera-instalar-mysql-server" class="md-nav__link">
+    <span class="md-ellipsis">
+      En esta práctica vamos a realizar la implantación de la aplicación web Moodle en dos instancias EC2 de Amazon Web Services (AWS) haciendo uso de playbooks de Ansible. En una de las instancias deberá instalar Apache HTTP Server y los módulos necesarios de PHP y en la otra máquina deberá instalar MySQL Server.
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#implantacion-de-moodle-en-amazon-web-services-aws-mediante-ansible" class="md-nav__link">
+    <span class="md-ellipsis">
+      Implantación de Moodle en Amazon Web Services (AWS) mediante Ansible
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pasos-a-seguir-antes-de-todo" class="md-nav__link">
+    <span class="md-ellipsis">
+      Pasos a seguir antes de todo:
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tener-la-siguiente-estructura-de-directorios-y-archivos-dentro-de-la-instancia-del-nodo-control-ya-que-todo-lo-que-vamos-a-hacer-va-a-ser-desde-el-nodo-control" class="md-nav__link">
+    <span class="md-ellipsis">
+      Tener la siguiente estructura de directorios y archivos dentro de la instancia del nodo control, ya que todo lo que vamos a hacer va a ser desde el nodo control:
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#la-arquitectura-de-esta-aplicacion-estara-formada-por-tres-capas" class="md-nav__link">
+    <span class="md-ellipsis">
+      La arquitectura de esta aplicación estará formada por tres capas:
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="La arquitectura de esta aplicación estará formada por tres capas:">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#-una-capa-con-un-balanceador-de-carga-que-repartira-las-peticiones-entre-los-servidores-web" class="md-nav__link">
+    <span class="md-ellipsis">
+      - Una capa con un balanceador de carga que repartirá las peticiones entre los servidores web.
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#-una-capa-de-front-end-formada-por-un-servidor-web-con-apache-http-server" class="md-nav__link">
+    <span class="md-ellipsis">
+      - Una capa de front-end, formada por un servidor web con Apache HTTP Server.
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#-una-capa-de-back-end-formada-por-un-servidor-mysql" class="md-nav__link">
+    <span class="md-ellipsis">
+      - Una capa de back-end, formada por un servidor MySQL.
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-paso-creamos-el-nombre-de-dominio-desde-no-ip-poniendo-la-ip-del-frontend" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. paso: Creamos el nombre de dominio desde no-ip, poniendo la ip del frontend
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-paso-ahora-vamos-a-crear-el-archivo-de-inventory-donde-en-inventory-tenemos-que-poner-las-ip-publica-del-frontend-backend-nfs-y-del-loadbalancer" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. paso: Ahora vamos a crear el archivo de inventory, donde en inventory tenemos que poner las ip pública del frontend, backend, nfs, y del loadbalancer.
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. paso: Ahora vamos a crear el archivo de inventory, donde en inventory tenemos que poner las ip pública del frontend, backend, nfs, y del loadbalancer.">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#hice-otro-grupo-para-frontend-1-para-solo-instalar-wordpress-en-un-frontend" class="md-nav__link">
+    <span class="md-ellipsis">
+      hice otro grupo para frontend 1 para solo instalar wordpress en un frontend
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-paso-vamos-a-utilizar-las-siguientes-variables-donde-se-definiran-dentro-de-su-arhcivo-correspondiente" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. paso: vamos a utilizar las siguientes variables donde se definiran dentro de su arhcivo correspondiente:
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-paso-crear-el-archivo-install_lamp_frontendyml" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. paso: crear el archivo install_lamp_frontend.yml
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-paso-crear-el-archivo-install_lamp_backendyml" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. paso: crear el archivo install_lamp_backend.yml
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-paso-crear-el-archivo-setup_nfs_serveryml" class="md-nav__link">
+    <span class="md-ellipsis">
+      7. paso: crear el archivo setup_nfs_Server.yml
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-paso-crear-el-archivo-setup_nfs_clientyml" class="md-nav__link">
+    <span class="md-ellipsis">
+      8. paso: crear el archivo setup_nfs_Client.yml
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-paso-crear-el-archivo-deploy_wordpress_backendyml" class="md-nav__link">
+    <span class="md-ellipsis">
+      9. paso: crear el archivo deploy_wordpress_backend.yml
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10-paso-crear-el-archivo-deploy_wordpress_frontendyml" class="md-nav__link">
+    <span class="md-ellipsis">
+      10. paso: crear el archivo deploy_wordpress_frontend.yml
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#11-paso-crear-el-archivo-setup_loadbalanceryml" class="md-nav__link">
+    <span class="md-ellipsis">
+      11. paso: crear el archivo setup_loadbalancer.yml
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#12-paso-crear-el-archivo-setup_letsencrypt_certificateyml" class="md-nav__link">
+    <span class="md-ellipsis">
+      12. paso: crear el archivo setup_letsencrypt_certificate.yml
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#una-vez-hayamos-creado-todos-los-archivos-hay-que-crear-2-archivos-maas-que-seran-para-los-archivos-de-configuracion-habra-que-crear-2-que-son-los-siguientes" class="md-nav__link">
+    <span class="md-ellipsis">
+      una vez hayamos creado todos los archivos hay que crear 2 archivos maas que serán para los archivos de configuración, habrá que crear 2 que son los siguientes:
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="una vez hayamos creado todos los archivos hay que crear 2 archivos maas que serán para los archivos de configuración, habrá que crear 2 que son los siguientes:">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#000-defaultconf" class="md-nav__link">
+    <span class="md-ellipsis">
+      000-default.conf
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#load_balancerconf" class="md-nav__link">
+    <span class="md-ellipsis">
+      load_balancer.conf
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ahora-tendremos-que-crear-un-archivo-exports-que-sera-para-configurar-los-directorios-compartidos" class="md-nav__link">
+    <span class="md-ellipsis">
+      ahora tendremos que crear un archivo exports que será para configurar los directorios compartidos
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#y-tambien-crear-un-archivo-htacces-para-las-reescrituras-de-las-urls" class="md-nav__link">
+    <span class="md-ellipsis">
+      y también crear un archivo .htacces para las reescrituras de las urls
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#una-vez-hecho-todo-esto-ya-tendriamos-todo-creado-y-habria-que-ejecutarlo-en-el-siguiente-orden" class="md-nav__link">
+    <span class="md-ellipsis">
+      una vez hecho todo esto, ya tendriamos todo creado y habría que ejecutarlo en el siguiente orden:
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cuando-lo-hayamos-ejecutado-vamos-a-comprobar-que-todo-ha-funcionado-perfectamente-para-ello-nos-vamos-a-ir-al-dominio-y-podemos-ver-que-se-hizo-perfectamente-el-wordpress-con-su-balanceo-de-carga-y-tambien-podemos-ver-el-certificado-de-letsencrypt" class="md-nav__link">
+    <span class="md-ellipsis">
+      cuando lo hayamos ejecutado, vamos a comprobar que todo ha funcionado perfectamente, para ello nos vamos a ir al dominio y podemos ver que se hizo perfectamente el wordpress con su balanceo de carga y también podemos ver el certificado de letsencrypt:
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
