@@ -11,6 +11,7 @@ docker run --rm -it -p 8000:8000 -u $(id -u):$(id -g) -v "$PWD":/docs squidfunk/
 site_name: jlopgim
 nav:
   - Practica_3-1: practica3-1.md 
+  - Practica_3-2: practica3-2.md 
 
 theme:
   name: material
@@ -105,11 +106,11 @@ https://juaanlopezz.github.io/mkdocs2/practica3-1/
 ![](./imagenes/mkdocs.PNG)
 ![](./imagenes/mkdocs1.PNG)
 
-## pagina readme .md del repo 3.2(lo agregué despues):
+## pagina readme .md del repo 3.2(lo agregué despues, ojo que hay que añadirlo al mkdocs.yml el archivo):
 
 
 ## pagina principal:
-![](./imagenes/mkdocs3.2.PNG)
+![](./imagenes/princip.PNG)
 
 
 ## asi tendria que quedar la estructura del repositorio

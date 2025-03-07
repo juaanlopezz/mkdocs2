@@ -1,6 +1,7 @@
 site_name: jlopgim
 nav:
   - Practica_3-1: practica3-1.md 
+  - Practica_3-2: practica3-2.md 
 
 theme:
   name: material
