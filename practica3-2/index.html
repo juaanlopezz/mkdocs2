@@ -1,0 +1,1216 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.7">
+    
+    
+      
+        <title>Practica-IAW-3.1- Implantación de Moodle en Amazon Web Services (AWS) mediante Ansible - jlopgim</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.8608ea7d.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="green" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#practica-iaw-31-implantacion-de-moodle-en-amazon-web-services-aws-mediante-ansible" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="jlopgim" class="md-header__button md-logo" aria-label="jlopgim" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            jlopgim
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Practica-IAW-3.1- Implantación de Moodle en Amazon Web Services (AWS) mediante Ansible
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="jlopgim" class="md-nav__button md-logo" aria-label="jlopgim" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    jlopgim
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../practica3-1/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Practica_3-1
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#en-esta-practica-vamos-a-realizar-la-implantacion-de-la-aplicacion-web-moodle-en-dos-instancias-ec2-de-amazon-web-services-aws-haciendo-uso-de-playbooks-de-ansible-en-una-de-las-instancias-debera-instalar-apache-http-server-y-los-modulos-necesarios-de-php-y-en-la-otra-maquina-debera-instalar-mysql-server" class="md-nav__link">
+    <span class="md-ellipsis">
+      En esta práctica vamos a realizar la implantación de la aplicación web Moodle en dos instancias EC2 de Amazon Web Services (AWS) haciendo uso de playbooks de Ansible. En una de las instancias deberá instalar Apache HTTP Server y los módulos necesarios de PHP y en la otra máquina deberá instalar MySQL Server.
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#implantacion-de-moodle-en-amazon-web-services-aws-mediante-ansible" class="md-nav__link">
+    <span class="md-ellipsis">
+      Implantación de Moodle en Amazon Web Services (AWS) mediante Ansible
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pasos-a-seguir-antes-de-todo" class="md-nav__link">
+    <span class="md-ellipsis">
+      Pasos a seguir antes de todo:
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tener-la-siguiente-estructura-de-directorios-y-archivos-dentro-de-la-instancia-del-nodo-control-ya-que-todo-lo-que-vamos-a-hacer-va-a-ser-desde-el-nodo-control" class="md-nav__link">
+    <span class="md-ellipsis">
+      Tener la siguiente estructura de directorios y archivos dentro de la instancia del nodo control, ya que todo lo que vamos a hacer va a ser desde el nodo control:
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#la-arquitectura-de-esta-aplicacion-estara-formada-por-tres-capas" class="md-nav__link">
+    <span class="md-ellipsis">
+      La arquitectura de esta aplicación estará formada por tres capas:
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="La arquitectura de esta aplicación estará formada por tres capas:">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#-una-capa-con-un-balanceador-de-carga-que-repartira-las-peticiones-entre-los-servidores-web" class="md-nav__link">
+    <span class="md-ellipsis">
+      - Una capa con un balanceador de carga que repartirá las peticiones entre los servidores web.
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#-una-capa-de-front-end-formada-por-un-servidor-web-con-apache-http-server" class="md-nav__link">
+    <span class="md-ellipsis">
+      - Una capa de front-end, formada por un servidor web con Apache HTTP Server.
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#-una-capa-de-back-end-formada-por-un-servidor-mysql" class="md-nav__link">
+    <span class="md-ellipsis">
+      - Una capa de back-end, formada por un servidor MySQL.
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-paso-creamos-el-nombre-de-dominio-desde-no-ip-poniendo-la-ip-del-frontend" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. paso: Creamos el nombre de dominio desde no-ip, poniendo la ip del frontend
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-paso-ahora-vamos-a-crear-el-archivo-de-inventory-donde-en-inventory-tenemos-que-poner-las-ip-publica-del-frontend-backend-nfs-y-del-loadbalancer" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. paso: Ahora vamos a crear el archivo de inventory, donde en inventory tenemos que poner las ip pública del frontend, backend, nfs, y del loadbalancer.
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. paso: Ahora vamos a crear el archivo de inventory, donde en inventory tenemos que poner las ip pública del frontend, backend, nfs, y del loadbalancer.">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#hice-otro-grupo-para-frontend-1-para-solo-instalar-wordpress-en-un-frontend" class="md-nav__link">
+    <span class="md-ellipsis">
+      hice otro grupo para frontend 1 para solo instalar wordpress en un frontend
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-paso-vamos-a-utilizar-las-siguientes-variables-donde-se-definiran-dentro-de-su-arhcivo-correspondiente" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. paso: vamos a utilizar las siguientes variables donde se definiran dentro de su arhcivo correspondiente:
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-paso-crear-el-archivo-install_lamp_frontendyml" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. paso: crear el archivo install_lamp_frontend.yml
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-paso-crear-el-archivo-install_lamp_backendyml" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. paso: crear el archivo install_lamp_backend.yml
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-paso-crear-el-archivo-setup_nfs_serveryml" class="md-nav__link">
+    <span class="md-ellipsis">
+      7. paso: crear el archivo setup_nfs_Server.yml
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-paso-crear-el-archivo-setup_nfs_clientyml" class="md-nav__link">
+    <span class="md-ellipsis">
+      8. paso: crear el archivo setup_nfs_Client.yml
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-paso-crear-el-archivo-deploy_wordpress_backendyml" class="md-nav__link">
+    <span class="md-ellipsis">
+      9. paso: crear el archivo deploy_wordpress_backend.yml
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10-paso-crear-el-archivo-deploy_wordpress_frontendyml" class="md-nav__link">
+    <span class="md-ellipsis">
+      10. paso: crear el archivo deploy_wordpress_frontend.yml
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#11-paso-crear-el-archivo-setup_loadbalanceryml" class="md-nav__link">
+    <span class="md-ellipsis">
+      11. paso: crear el archivo setup_loadbalancer.yml
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#12-paso-crear-el-archivo-setup_letsencrypt_certificateyml" class="md-nav__link">
+    <span class="md-ellipsis">
+      12. paso: crear el archivo setup_letsencrypt_certificate.yml
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#una-vez-hayamos-creado-todos-los-archivos-hay-que-crear-2-archivos-maas-que-seran-para-los-archivos-de-configuracion-habra-que-crear-2-que-son-los-siguientes" class="md-nav__link">
+    <span class="md-ellipsis">
+      una vez hayamos creado todos los archivos hay que crear 2 archivos maas que serán para los archivos de configuración, habrá que crear 2 que son los siguientes:
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="una vez hayamos creado todos los archivos hay que crear 2 archivos maas que serán para los archivos de configuración, habrá que crear 2 que son los siguientes:">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#000-defaultconf" class="md-nav__link">
+    <span class="md-ellipsis">
+      000-default.conf
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#load_balancerconf" class="md-nav__link">
+    <span class="md-ellipsis">
+      load_balancer.conf
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ahora-tendremos-que-crear-un-archivo-exports-que-sera-para-configurar-los-directorios-compartidos" class="md-nav__link">
+    <span class="md-ellipsis">
+      ahora tendremos que crear un archivo exports que será para configurar los directorios compartidos
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#y-tambien-crear-un-archivo-htacces-para-las-reescrituras-de-las-urls" class="md-nav__link">
+    <span class="md-ellipsis">
+      y también crear un archivo .htacces para las reescrituras de las urls
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#una-vez-hecho-todo-esto-ya-tendriamos-todo-creado-y-habria-que-ejecutarlo-en-el-siguiente-orden" class="md-nav__link">
+    <span class="md-ellipsis">
+      una vez hecho todo esto, ya tendriamos todo creado y habría que ejecutarlo en el siguiente orden:
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cuando-lo-hayamos-ejecutado-vamos-a-comprobar-que-todo-ha-funcionado-perfectamente-para-ello-nos-vamos-a-ir-al-dominio-y-podemos-ver-que-se-hizo-perfectamente-el-wordpress-con-su-balanceo-de-carga-y-tambien-podemos-ver-el-certificado-de-letsencrypt" class="md-nav__link">
+    <span class="md-ellipsis">
+      cuando lo hayamos ejecutado, vamos a comprobar que todo ha funcionado perfectamente, para ello nos vamos a ir al dominio y podemos ver que se hizo perfectamente el wordpress con su balanceo de carga y también podemos ver el certificado de letsencrypt:
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="practica-iaw-31-implantacion-de-moodle-en-amazon-web-services-aws-mediante-ansible">Practica-IAW-3.1- Implantación de Moodle en Amazon Web Services (AWS) mediante Ansible</h1>
+<h2 id="en-esta-practica-vamos-a-realizar-la-implantacion-de-la-aplicacion-web-moodle-en-dos-instancias-ec2-de-amazon-web-services-aws-haciendo-uso-de-playbooks-de-ansible-en-una-de-las-instancias-debera-instalar-apache-http-server-y-los-modulos-necesarios-de-php-y-en-la-otra-maquina-debera-instalar-mysql-server">En esta práctica vamos a realizar la implantación de la aplicación web Moodle en dos instancias EC2 de Amazon Web Services (AWS) haciendo uso de playbooks de Ansible. En una de las instancias deberá instalar Apache HTTP Server y los módulos necesarios de PHP y en la otra máquina deberá instalar MySQL Server.</h2>
+<h2 id="implantacion-de-moodle-en-amazon-web-services-aws-mediante-ansible">Implantación de Moodle en Amazon Web Services (AWS) mediante Ansible</h2>
+<h2 id="pasos-a-seguir-antes-de-todo">Pasos a seguir antes de todo:</h2>
+<h2 id="tener-la-siguiente-estructura-de-directorios-y-archivos-dentro-de-la-instancia-del-nodo-control-ya-que-todo-lo-que-vamos-a-hacer-va-a-ser-desde-el-nodo-control">Tener la siguiente estructura de directorios y archivos dentro de la instancia del nodo control, ya que todo lo que vamos a hacer va a ser desde el nodo control:</h2>
+<p><img alt="" src="imagenes/estructura.png" /></p>
+<h2 id="la-arquitectura-de-esta-aplicacion-estara-formada-por-tres-capas">La arquitectura de esta aplicación estará formada por tres capas:</h2>
+<h3 id="-una-capa-con-un-balanceador-de-carga-que-repartira-las-peticiones-entre-los-servidores-web">- Una capa con un balanceador de carga que repartirá las peticiones entre los servidores web.</h3>
+<h3 id="-una-capa-de-front-end-formada-por-un-servidor-web-con-apache-http-server">- Una capa de front-end, formada por un servidor web con Apache HTTP Server.</h3>
+<h3 id="-una-capa-de-back-end-formada-por-un-servidor-mysql">- Una capa de back-end, formada por un servidor MySQL.</h3>
+<h2 id="_1"></h2>
+<h2 id="1-paso-creamos-el-nombre-de-dominio-desde-no-ip-poniendo-la-ip-del-frontend">1. paso: Creamos el nombre de dominio desde no-ip, poniendo la ip del frontend</h2>
+<p><img alt="" src="imagenes/no-ip.png" /></p>
+<h2 id="2-paso-ahora-vamos-a-crear-el-archivo-de-inventory-donde-en-inventory-tenemos-que-poner-las-ip-publica-del-frontend-backend-nfs-y-del-loadbalancer">2. paso:  Ahora vamos a crear el archivo de inventory, donde en inventory tenemos que poner las ip pública del frontend, backend, nfs, y del loadbalancer.</h2>
+<h3 id="hice-otro-grupo-para-frontend-1-para-solo-instalar-wordpress-en-un-frontend">hice otro grupo para frontend 1 para solo instalar wordpress en un frontend</h3>
+<pre><code class="language-yaml">[frontend]
+52.22.98.141
+44.199.57.156
+
+[frontend1]
+52.22.98.141
+
+[backend]
+35.168.180.126
+
+[load_balancer]
+98.85.8.55
+
+[nfs]
+54.84.33.233
+
+[all:vars]
+ansible_user=ubuntu
+ansible_ssh_private_key_file=/home/ubuntu/practica-iaw-3.1/vockey.pem
+ansible_ssh_common_args='-o StrictHostKeyChecking=accept-new'
+</code></pre>
+<h2 id="3-paso-vamos-a-utilizar-las-siguientes-variables-donde-se-definiran-dentro-de-su-arhcivo-correspondiente">3. paso: vamos a utilizar las siguientes variables donde se definiran dentro de su arhcivo correspondiente:</h2>
+<pre><code class="language-yaml"># Variables de configuración de Let's Encrypt
+LE_EMAIL: &quot;juanje@gmail.com&quot;
+LE_DOMAIN: &quot;practica-iaw.zapto.org&quot;
+
+# Variables de MySQL
+mysql_user: &quot;juanje&quot;
+mysql_password: &quot;eliker123&quot;
+mysql_host: &quot;172.31.85.101&quot;
+
+# Variables de configuración de la base de datos de WordPress
+WORDPRESS_DB_NAME: &quot;wordpress&quot;
+WORDPRESS_DB_USER: &quot;juanje&quot;
+WORDPRESS_DB_PASSWORD: &quot;eliker123&quot;
+WORDPRESS_DB_HOST: &quot;172.31.85.101&quot;
+WORDPRESS_DIRECTORY: &quot;/var/www/html&quot;
+wordpress_locale: &quot;es_ES&quot;
+
+
+
+# Variables para la configuración del sitio de WordPress
+locale: &quot;es_ES&quot;  # Localización de WordPress
+wordpress_title: &quot;Mi WordPress juanje&quot;  # Título del sitio de WordPress
+wordpress_admin_user: &quot;admin&quot;  # Usuario del administrador
+wordpress_admin_password: &quot;admin&quot;  # Contraseña del administrador
+wordpress_admin_email: &quot;admin@example.com&quot;  # Correo del administrador
+wordpress_hide_login_url: &quot;nada&quot;  # URL oculta para el login
+domain: &quot;https://practica-iaw.zapto.org&quot;
+
+# IPs y configuraciones de red
+BACKEND_PRIVATE_IP: &quot;172.31.85.101&quot;
+IP_FRONTEND_1: &quot;172.31.24.92&quot;
+IP_FRONTEND_2: &quot;172.31.23.88&quot;
+SERVER_IP: &quot;172.31.28.85&quot;
+CLIENT_IP: &quot;172.31.24.92&quot;
+FRONTEND_PRIVATE_IP: &quot;172.31.%&quot;
+FRONTEND_IP_RANGE: &quot;172.31.0.0/24&quot;
+
+
+</code></pre>
+<h2 id="4-paso-crear-el-archivo-install_lamp_frontendyml">4. paso: crear el archivo install_lamp_frontend.yml</h2>
+<pre><code class="language-yaml">---
+- name: Instalar LAMP en Frontend
+  hosts: frontend
+  become: yes
+  vars_files:
+    - ../vars/variables.yml
+  tasks:
+
+    # Actualizamos los repositorios para tener las últimas versiones de los paquetes
+    - name: Actualizar los repositorios
+      apt:
+        update_cache: yes
+
+    # Instalamos Apache
+    - name: Instalar el servidor web Apache
+      apt:
+        name: apache2
+        state: present
+
+    # Habilitamos el módulo rewrite de Apache para permitir la reescritura de URLs
+    - name: Habilitar el módulo rewrite de Apache
+      apache2_module:
+        name: rewrite
+        state: present
+
+    # Copiamos el archivo de configuración de Apache desde mis plantillas
+    - name: Copiar el archivo de configuración de Apache
+      copy:
+        src: ../templates/000-default.conf
+        dest: /etc/apache2/sites-available/
+        mode: 0755
+
+    # Instalamos PHP y los módulos necesarios para ejecutar WordPress o Moodle
+    - name: Instalar PHP y los módulos necesarios
+      apt: 
+        name: 
+          - php
+          - libapache2-mod-php
+          - php-mysql
+          - php-xml
+          - php-mbstring
+          - php-curl
+          - php-zip
+          - php-gd
+          - php-intl
+          - php-soap
+          - php-ldap
+          - php-opcache
+          - php-cli
+        state: present
+
+    # Reiniciamos Apache para aplicar los cambios de configuración
+    - name: Reiniciar el servidor web Apache
+      service:
+        name: apache2
+        state: restarted
+
+</code></pre>
+<h2 id="5-paso-crear-el-archivo-install_lamp_backendyml">5. paso: crear el archivo install_lamp_backend.yml</h2>
+<pre><code class="language-yaml">---
+- name: Instalar MySQL en Backend
+  hosts: backend
+  become: yes
+  vars_files:
+    - ../vars/variables.yml
+  tasks:
+    - name: Actualizar repositorios
+      ansible.builtin.apt:
+        update_cache: yes
+        cache_valid_time: 3600
+
+    - name: Instalar MySQL Server
+      apt:
+        name: mysql-server
+        state: present
+
+    - name: Configurar MySQL para aceptar conexiones remotas
+      lineinfile:
+        path: /etc/mysql/mysql.conf.d/mysqld.cnf
+        regexp: '^bind-address'
+        line: &quot;bind-address = {{ BACKEND_PRIVATE_IP }}&quot;
+      notify: Reiniciar MySQL
+
+  handlers:
+    - name: Reiniciar MySQL
+      service:
+        name: mysql
+        state: restarted
+
+</code></pre>
+<h2 id="7-paso-crear-el-archivo-setup_nfs_serveryml">7. paso: crear el archivo setup_nfs_Server.yml</h2>
+<pre><code class="language-yaml">---
+- name: Configuración del servidor NFS
+  hosts: nfs
+  become: yes
+
+  vars_files:
+    - ../vars/variables.yml
+
+  tasks:
+
+    - name: Actualizar los repositorios
+      apt:
+        update_cache: yes
+
+    - name: Actualizar los paquetes
+      apt:
+        upgrade: dist
+        update_cache: yes
+
+    - name: Instalar el servidor NFS
+      apt:
+        name: nfs-kernel-server
+        state: present
+
+    - name: Crear el directorio /var/www/html
+      file:
+        path: /var/www/html
+        state: directory
+        owner: nobody
+        group: nogroup
+        mode: '0755'
+
+    - name: Configurar los directorios exportados en /etc/exports
+      lineinfile:
+        path: /etc/exports
+        line: &quot;/var/www/html {{ CLIENT_IP }}(rw,sync,no_subtree_check,no_root_squash)&quot;
+        create: yes
+
+    - name: Reiniciar el servicio NFS
+      service:
+        name: nfs-kernel-server
+        state: restarted
+</code></pre>
+<h2 id="8-paso-crear-el-archivo-setup_nfs_clientyml">8. paso: crear el archivo setup_nfs_Client.yml</h2>
+<pre><code class="language-yaml">- name: Configurar Cliente NFS
+  hosts: frontend1
+  become: yes
+  vars_files:
+    - ../vars/variables.yml
+  tasks:
+
+    - name: Actualizar /etc/fstab para montar el directorio NFS al iniciar
+      lineinfile:
+        path: /etc/fstab
+        line: &quot;{{ SERVER_IP }}:/var/www/html /var/www/html nfs auto,nofail,noatime,nolock,intr,tcp,actimeo=1800 0 0&quot;
+        create: yes
+
+    - name: Instalar cliente NFS
+      apt:
+        name: nfs-common
+        state: present
+
+    - name: Montar directorio NFS
+      mount:
+        path: &quot;{{ WORDPRESS_DIRECTORY }}&quot;
+        src: &quot;{{ SERVER_IP }}:{{ WORDPRESS_DIRECTORY }}&quot;
+        fstype: nfs
+        opts: &quot;auto,nofail,noatime,nolock,intr,tcp,actimeo=1800&quot;
+        state: mounted
+
+    - name: Actualizar /etc/fstab para montar el directorio NFS al iniciar
+      lineinfile:
+        path: /etc/fstab
+        line: &quot;{{ SERVER_IP }}:/var/www/html /var/www/html nfs auto,nofail,noatime,nolock,intr,tcp,actimeo=1800 0 0&quot;
+        create: yes
+</code></pre>
+<h2 id="9-paso-crear-el-archivo-deploy_wordpress_backendyml">9. paso: crear el archivo deploy_wordpress_backend.yml</h2>
+<pre><code class="language-yaml">---
+- name: Configurar Base de Datos para WordPress
+  hosts: backend
+  become: yes
+  vars_files:
+    - ../vars/variables.yml
+  tasks:
+    # Instalar python3-pymysql usando apt
+    - name: Asegurarse de que python3-pymysql esté instalado
+      apt:
+        name: python3-pymysql
+        state: present
+        update_cache: yes
+      become: yes
+
+    # Instalar python3-pip usando apt
+    - name: Asegurarse de que pip3 esté instalado
+      apt:
+        name: python3-pip
+        state: present
+        update_cache: yes
+      become: yes
+
+    # Configurar MySQL para aceptar conexiones remotas
+    - name: Permitir conexiones remotas en MySQL
+      lineinfile:
+        path: /etc/mysql/mysql.conf.d/mysqld.cnf
+        regexp: '^#bind-address.*'
+        line: 'bind-address = 0.0.0.0'
+      become: yes
+
+    - name: Reiniciar servicio MySQL
+      systemd:
+        name: mysql
+        state: restarted
+      become: yes
+
+    # Crear la base de datos de WordPress
+    - name: Crear la base de datos de WordPress
+      mysql_db:
+        name: &quot;{{ WORDPRESS_DB_NAME }}&quot;   # Asegúrate de que sea WORDPRESS_DB_NAME
+        state: present
+        login_unix_socket: /var/run/mysqld/mysqld.sock 
+      become: yes
+
+    # Crear usuario de WordPress y asignar privilegios
+    - name: Crear usuario de WordPress
+      mysql_user:
+        name: &quot;{{ WORDPRESS_DB_USER }}&quot;
+        password: &quot;{{ WORDPRESS_DB_PASSWORD }}&quot;
+        host: &quot;{{ FRONTEND_PRIVATE_IP }}&quot;
+        priv: &quot;{{ WORDPRESS_DB_NAME }}.*:ALL&quot;
+        state: present
+        login_unix_socket: /var/run/mysqld/mysqld.sock 
+      become: yes
+
+
+</code></pre>
+<h2 id="10-paso-crear-el-archivo-deploy_wordpress_frontendyml">10. paso: crear el archivo deploy_wordpress_frontend.yml</h2>
+<pre><code class="language-yaml">---
+- name: Desplegar Frontend de WordPress
+  hosts: frontend1
+  become: yes
+  vars_files:
+    - ../vars/variables.yml
+  tasks:
+
+    # Eliminamos el directorio de instalación si existe
+    - name: Eliminar el directorio de instalación
+      file:
+        path: /usr/local/bin/wp/
+        state: absent
+
+    # Configuramos los permisos en el directorio donde voy a instalar de WP-CLI
+    - name: Configurar permisos de wp-cli
+      file:
+        path: /usr/local/bin/
+        owner: www-data
+        group: www-data
+        mode: 0755
+
+    # Descargamos WP-CLI para gestionar WordPress desde la terminal
+    - name: Descargar la utilidad WP-CLI
+      get_url:
+        url: https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar
+        dest: /usr/local/bin/wp
+        mode: 0755
+
+    # Eliminamos instalaciones previas de Wordpress en /var/www/html
+    - name: Eliminar instalaciones previas de WordPress
+      shell: rm -rf /var/www/html/*
+
+    # Modificamos los permisos del directorio de instalación de Wordpress
+    - name: Modificar permisos del directorio /var/www/html
+      file:
+        path: /var/www/html
+        owner: www-data
+        group: www-data
+        recurse: yes
+        mode: 0755
+
+    # Descargamos el código fuente de WordPress usando WP-CLI
+    - name: Descargar el código fuente de WordPress
+      command: 
+        wp core download \
+        --locale=&quot;{{ wordpress_locale }}&quot; \
+        --path=/var/www/html \
+        --allow-root
+
+    # Eliminamos el archivo wp-config.php en caso de que exista
+    - name: Eliminar wp-config.php si existe
+      file:
+        path: /var/www/html/wp-config.php
+        state: absent
+
+    # Creamos el archivo de configuración de WordPress con los datos del archivo de variables
+    - name: Crear el archivo de configuración de WordPress
+      command: 
+        wp config create \
+        --dbname=&quot;{{ WORDPRESS_DB_NAME }}&quot; \
+        --dbuser=&quot;{{ WORDPRESS_DB_USER }}&quot; \
+        --dbpass=&quot;{{ WORDPRESS_DB_PASSWORD }}&quot; \
+        --dbhost=&quot;{{ WORDPRESS_DB_HOST }}&quot; \
+        --path=&quot;{{ WORDPRESS_DIRECTORY }}&quot; \
+        --allow-root
+
+    # Instalamos WordPress con los datos del archivo de variables
+    - name: Instalar WordPress
+      command: 
+        wp core install \
+        --url=&quot;{{ LE_DOMAIN }}&quot; \
+        --title=&quot;{{ wordpress_title }}&quot; \
+        --admin_user=&quot;{{ wordpress_admin_user }}&quot; \
+        --admin_password=&quot;{{ wordpress_admin_password }}&quot; \
+        --admin_email=&quot;{{ wordpress_admin_email }}&quot; \
+        --path=&quot;{{ WORDPRESS_DIRECTORY }}&quot; \
+        --allow-root
+
+    # Cambiamos los permisos del directorio /var/www/html
+    - name: Configuramos permisos de /var/www/html
+      file:
+        path: /var/www/html
+        owner: www-data
+        group: www-data
+        mode: '0755'
+        recurse: yes
+
+    # Cambiamos los permisos del directorio /wp-content/upgrade
+    - name: Configuramos permisos de wp-content
+      file:
+        path: /var/www/html/wp-content/upgrade
+        owner: www-data
+        group: www-data
+        mode: '0755'
+        recurse: yes
+
+    # Cambiamos los permisos del directorio /wp-content/plugins
+    - name: Configuramos permisos de wp-content
+      file:
+        path: /var/www/html/wp-content/plugins
+        owner: www-data
+        group: www-data
+        mode: '0755'
+        recurse: yes
+
+    # Instalamos y activamos el tema de Mindscape para el WordPress
+    - name: Instalar y activar el tema Mindscape
+      command: 
+        wp theme install mindscape --activate \
+        --path=&quot;{{ WORDPRESS_DIRECTORY }}&quot; \
+        --allow-root
+
+    # Instalamos y activamos el plugin wps-hide-login para proteger el acceso al panel de administración
+    - name: Instalar y activar el plugin wps-hide-login
+      command: 
+        wp plugin install wps-hide-login --activate \
+        --path=&quot;{{ WORDPRESS_DIRECTORY }}&quot; \
+        --allow-root
+
+    # Configuramos la URL de acceso oculta mediante wps-hide-login con los datos del archivo de variables
+    - name: Configurar el plugin wps-hide-login
+      command: 
+        wp option update whl_page {{ wordpress_hide_login_url }} \
+        --path=&quot;{{ WORDPRESS_DIRECTORY }}&quot; \
+        --allow-root
+
+    # Configuramos los enlaces permanentes para la estructura de URLs
+    - name: Configurar los enlaces permanentes
+      command: 
+        wp rewrite structure '/%postname%/' \
+        --path=&quot;{{ WORDPRESS_DIRECTORY }}&quot; \
+        --allow-root
+
+    # Copiamos el archivo .htaccess al directorio de WordPress
+    - name: Copiar el archivo .htaccess al directorio de WordPress
+      copy:
+        src: ../htaccess/.htaccess
+        dest: &quot;{{ WORDPRESS_DIRECTORY }}/.htaccess&quot;
+        owner: www-data
+        group: www-data
+        mode: '0644'
+
+    # Nos aseguramos de que la variable $_SERVER['HTTPS'] esté en el archivo wp-config.php
+    - name: Asegurar que $_SERVER['HTTPS'] esté en wp-config.php
+      lineinfile:
+        path: /var/www/html/wp-config.php
+        line: &quot;$_SERVER['HTTPS'] = 'on';&quot;
+        state: present
+        insertbefore: &quot;^define\\( 'DB_NAME', 'wordpress' \\);&quot;
+
+    # Reiniciamos Apache para aplicar los cambios
+    - name: Reiniciar el servidor web Apache
+      service:
+        name: apache2
+        state: restarted
+</code></pre>
+<h2 id="11-paso-crear-el-archivo-setup_loadbalanceryml">11. paso: crear el archivo setup_loadbalancer.yml</h2>
+<pre><code class="language-yaml">- name: Configurar Nginx como balanceador de carga
+  hosts: load_balancer
+  become: yes
+
+  vars_files:
+    - ../vars/variables.yml
+
+  tasks:
+
+    # Actualizamos los repositorios para tener las últimas versiones de los paquetes
+    - name: Actualizar los repositorios
+      apt:
+        update_cache: yes
+
+    # Actualizamos los paquetes del sistema, con 'dist' actualizamos los paquetes del sistema.
+    - name: Actualizar los paquetes
+      apt:
+        upgrade: dist  
+
+    # Instalamos Nginx 
+    - name: Instalar Nginx
+      apt:
+        name: nginx
+        state: present
+
+    # Copiamos la configuración personalizada del balanceador de carga desde mi template.
+    - name: Copiar configuración de balanceador de carga
+      template:
+        src: ../templates/load_balancer.conf
+        dest: /etc/nginx/sites-available/load_balancer.conf
+
+    # Deshabilitamos la configuración por defecto de Nginx.
+    - name: Deshabilitar el sitio por defecto de Nginx
+      file:
+        path: /etc/nginx/sites-enabled/default  # (ubicación del archivo de conf)
+        state: absent  # Lo elimino
+
+    # Sustituimos IP_FRONTEND_1 en la configuración con la IP real desde las variables.
+    - name: Sustituir IP_FRONTEND_1 en la configuración
+      replace:
+        path: /etc/nginx/sites-available/load_balancer.conf
+        regexp: 'IP_FRONTEND_1'  
+        replace: '{{ IP_FRONTEND_1 }}'
+
+    # Lo mismo para la IP_FRONTEND_2.
+    - name: Sustituir IP_FRONTEND_2 en la configuración
+      replace:
+        path: /etc/nginx/sites-available/load_balancer.conf
+        regexp: 'IP_FRONTEND_2'
+        replace: '{{ IP_FRONTEND_2 }}'
+
+    # Sustituimos el dominio de Let's Encrypt en la configuración del balanceador.
+    - name: Sustituir LE_DOMAIN en la configuración
+      replace:
+        path: /etc/nginx/sites-available/load_balancer.conf
+        regexp: 'LE_DOMAIN'  # Buscamos el marcador de dominio.
+        replace: '{{ LE_DOMAIN }}'  # Lo reemplazo con el valor real.
+
+    # Creamos un enlace simbólico para habilitar la configuración del balanceador de carga en Nginx.
+    - name: Habilitar la configuración de Nginx
+      file:
+        src: /etc/nginx/sites-available/load_balancer.conf
+        dest: /etc/nginx/sites-enabled/load_balancer.conf
+        state: link
+
+    # Deshabilitamos la configuración 000-default en Nginx.
+    - name: Deshabilitar 000-default en Nginx
+      file:
+        path: /etc/nginx/sites-available/000-default.conf
+        state: absent 
+
+    # Finalmente, reiniciamos Nginx para que aplique los cambios.
+    - name: Reiniciar Nginx
+      systemd:
+        name: nginx
+        state: reloaded  # uso reload para recargar el servicio sin necesidad de reiniciarlo
+</code></pre>
+<h2 id="12-paso-crear-el-archivo-setup_letsencrypt_certificateyml">12. paso: crear el archivo setup_letsencrypt_certificate.yml</h2>
+<pre><code class="language-yaml">---
+- name: Instalar y Configurar Let's Encrypt con Certbot
+  hosts: load_balancer
+  become: yes
+  vars_files:
+    - ../vars/variables.yml
+  tasks:
+
+    # Actualizamos los repositorios para tener las últimas versiones de los paquetes
+    - name: Actualizar la lista de paquetes
+      apt:
+        update_cache: yes
+
+    # Eliminamos cualquier versión previa de Certbot 
+    - name: Desinstalar instalaciones previas de Certbot en caso de que existan
+      apt:
+        name: certbot
+        state: absent
+
+    # Instalamos Certbot con snap
+    - name: Instalar Certbot con Snap
+      snap:
+        name: certbot
+        classic: yes
+        state: present
+
+    # Solicitamos y configuramos automáticamente el certificado SSL mi dominio
+    - name: Solicitar y configurar certificado con Cerbot con Nginx
+      command:
+        cmd: certbot --nginx -m {{ LE_EMAIL }} --agree-tos --no-eff-email -d {{ LE_DOMAIN }} 
+
+</code></pre>
+<h2 id="una-vez-hayamos-creado-todos-los-archivos-hay-que-crear-2-archivos-maas-que-seran-para-los-archivos-de-configuracion-habra-que-crear-2-que-son-los-siguientes">una vez hayamos creado todos los archivos hay que crear 2 archivos maas que serán para los archivos de configuración, habrá que crear 2 que son los siguientes:</h2>
+<h3 id="000-defaultconf">000-default.conf</h3>
+<pre><code class="language-yaml">
+&lt;VirtualHost *:80&gt;
+    ServerName practica-iaw.zapto.org
+    ServerAdmin webmaster@localhost
+    DocumentRoot /var/www/html/
+
+    DirectoryIndex index.php index.html
+
+    &lt;Directory /var/www/html&gt;
+        AllowOverride All
+        Require all granted
+    &lt;/Directory&gt;
+
+    ErrorLog ${APACHE_LOG_DIR}/error.log
+    CustomLog ${APACHE_LOG_DIR}/access.log combined
+&lt;/VirtualHost&gt;
+</code></pre>
+<h3 id="load_balancerconf">load_balancer.conf</h3>
+<pre><code class="language-yaml">upstream frontend_servers {
+    server IP_FRONTEND_1;
+    server IP_FRONTEND_2;
+}
+server {
+    listen 80;
+    server_name practica-iaw.zapto.org;
+
+    location / {
+        proxy_pass http://frontend_servers;
+        proxy_set_header Host $host;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto https;
+
+    }
+}
+</code></pre>
+<h2 id="ahora-tendremos-que-crear-un-archivo-exports-que-sera-para-configurar-los-directorios-compartidos">ahora tendremos que crear un archivo exports que será para configurar los directorios compartidos</h2>
+<pre><code class="language-yaml">/var/www/html  CLIENT_IP(rw,sync,no_root_squash,no_subtree_check)
+</code></pre>
+<h2 id="y-tambien-crear-un-archivo-htacces-para-las-reescrituras-de-las-urls">y también crear un archivo .htacces para las reescrituras de las urls</h2>
+<pre><code class="language-yaml"># BEGIN WordPress
+&lt;IfModule mod_rewrite.c&gt;
+RewriteEngine On
+RewriteBase /
+RewriteRule ^index\.php$ - [L]
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule . /index.php [L]
+&lt;/IfModule&gt;
+# END WordPresss
+</code></pre>
+<h2 id="una-vez-hecho-todo-esto-ya-tendriamos-todo-creado-y-habria-que-ejecutarlo-en-el-siguiente-orden">una vez hecho todo esto, ya tendriamos todo creado y habría que ejecutarlo en el siguiente orden:</h2>
+<pre><code class="language-yaml">---
+- import_playbook: playbooks/install_lamp_backend.yml
+- import_playbook: playbooks/install_lamp_frontend.yml
+- import_playbook: playbooks/setup_nfs_server.yml
+- import_playbook: playbooks/setup_nfs_client.yml
+- import_playbook: playbooks/deploy_wordpress_backend.yml
+- import_playbook: playbooks/deploy_wordpress_frontend.yml
+- import_playbook: playbooks/setup_load_balancer.yml
+- import_playbook: playbooks/setup_letsencrypt_certificate.yml
+</code></pre>
+<h2 id="cuando-lo-hayamos-ejecutado-vamos-a-comprobar-que-todo-ha-funcionado-perfectamente-para-ello-nos-vamos-a-ir-al-dominio-y-podemos-ver-que-se-hizo-perfectamente-el-wordpress-con-su-balanceo-de-carga-y-tambien-podemos-ver-el-certificado-de-letsencrypt">cuando lo hayamos ejecutado, vamos a comprobar que todo ha funcionado perfectamente, para ello nos vamos a ir al dominio y podemos ver que se hizo perfectamente el wordpress con su balanceo de carga y también podemos ver el certificado de letsencrypt:</h2>
+<p><img alt="" src="imagenes/wordpress-inicio.PNG" /></p>
+<p><img alt="" src="imagenes/nada.png" /></p>
+<p><img alt="" src="imagenes/certificado.png" /></p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "..", "features": [], "search": "../assets/javascripts/workers/search.f8cc74c7.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.c8b220af.min.js"></script>
+      
+    
+  </body>
+</html>
