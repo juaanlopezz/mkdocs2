@@ -139,7 +139,7 @@
 <h2 id="implantacion-de-moodle-en-amazon-web-services-aws-mediante-ansible">Implantación de Moodle en Amazon Web Services (AWS) mediante Ansible</h2>
 <h2 id="pasos-a-seguir-antes-de-todo">Pasos a seguir antes de todo:</h2>
 <h2 id="tener-la-siguiente-estructura-de-directorios-y-archivos-dentro-de-la-instancia-del-nodo-control-ya-que-todo-lo-que-vamos-a-hacer-va-a-ser-desde-el-nodo-control">Tener la siguiente estructura de directorios y archivos dentro de la instancia del nodo control, ya que todo lo que vamos a hacer va a ser desde el nodo control:</h2>
-<p><img alt="" src="imagenes/estructura.png" /></p>
+<p><img alt="" src="../imagenes/estructura.png" /></p>
 <h2 id="la-arquitectura-de-esta-aplicacion-estara-formada-por-dos-capas">La arquitectura de esta aplicación estará formada por dos capas:</h2>
 <h3 id="una-capa-de-front-end-formada-por-un-servidor-web-con-apache-http-server">Una capa de front-end, formada por un servidor web con Apache HTTP Server.</h3>
 <h3 id="una-capa-de-back-end-formada-por-un-servidor-mysql">Una capa de back-end, formada por un servidor MySQL.</h3>
@@ -157,7 +157,7 @@ ansible_ssh_private_key_file=/home/ubuntu/practica-iaw-3.1/vockey.pem
 ansible_ssh_common_args='-o StrictHostKeyChecking=accept-new'
 </code></pre>
 <h2 id="1-paso-creamos-el-nombre-de-dominio-desde-no-ip-poniendo-la-ip-del-frontend">1. paso: Creamos el nombre de dominio desde no-ip, poniendo la ip del frontend</h2>
-<p><img alt="" src="imagenes/no-ip.png" /></p>
+<p><img alt="" src="../imagenes/no-ip.png" /></p>
 <h2 id="2-paso-dentro-de-la-instancia-nodo-control-tener-metida-la-vockeypem-y-darle-permisos-chmod-400-y-descargar-ansible">2. paso: Dentro de la instancia nodo control, tener metida la vockey.pem y darle permisos chmod 400 y descargar ansible</h2>
 <pre><code class="language-yaml">apt install ansible -y
 </code></pre>
@@ -490,11 +490,11 @@ certbot:
 <pre><code class="language-yaml">sudo ansible-playbook -i ./inventory/inventory main.yml
 </code></pre>
 <h2 id="comprobacion-ejecucion-del-mainyml-donde-se-encuentran-todos-los-archivos">comprobación ejecucion del main.yml donde se encuentran todos los archivos</h2>
-<p><img alt="" src="imagenes/ejecuion.png" /></p>
+<p><img alt="" src="../imagenes/ejecuion.png" /></p>
 <h2 id="9-paso-comprobacion-del-funcionamiento-correcto-de-moodle">9. paso: comprobación del funcionamiento correcto de moodle</h2>
-<p><img alt="" src="imagenes/moodle.PNG" /></p>
+<p><img alt="" src="../imagenes/moodle.PNG" /></p>
 <h2 id="10-paso-comprobar-certificado">10. paso: comprobar certificado</h2>
-<p><img alt="" src="imagenes/certificado.png" /></p></div>
+<p><img alt="" src="../imagenes/certificado.png" /></p></div>
             </div>
         </div>
 
