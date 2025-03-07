@@ -105,8 +105,11 @@ https://juaanlopezz.github.io/mkdocs2/practica3-1/
 ![](./imagenes/mkdocs.PNG)
 ![](./imagenes/mkdocs1.PNG)
 
+## pagina readme .md del repo 3.2(lo agregué despues):
+
+
 ## pagina principal:
-![](./imagenes/princip.PNG)
+![](./imagenes/mkdocs3.2.PNG)
 
 
 ## asi tendria que quedar la estructura del repositorio
